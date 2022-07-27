@@ -57,7 +57,7 @@
     padding: 0.5rem 1rem;
     font-size: 12px;
     border-radius: 7px;
-    top: -10%;
+    top: -20%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation-name: invalidInputAnimition;
@@ -68,6 +68,6 @@
 }
 
 @keyframes invalidInputAnimition {
-    0% {top: -10%;}
+    0% {top: -20%;}
     100% {top: 50%;}
 }
