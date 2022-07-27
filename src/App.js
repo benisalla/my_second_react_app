@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import './App.css'
+import TaskInPut from "./Componenets/TaskInPut";
+import TaskOutPut from "./Componenets/TaskOutPut";
 
-function App() {
+const App = () =>{
+  const [Tasks, setTasks] = useState([]);
+  const [TaskExist, setTaskExist] = useState("");
+  
+  const createNewID = () =>{
+      let ID = "";
+      for(let i=0 ; i< 6 ; i++)
+          ID += String.fromCharCode(parseInt(Math.random()*66)+48);
+      return ID;
+  }
+
+  const InputChangeHandler = (newData) =>{
+
+    const arr = Tasks.filter((element) => {
+      return element.name === newData;
+    })
+
+    if(arr.length !==0 ){
+      setTaskExist("TaskExist");
+      setTimeout(() => {
+        setTaskExist("");
+      }, 1000);
+    
+    }
+    else{
+      setTaskExist("");
+      setTasks([
+          {name: newData ,ID : createNewID()},
+          ...Tasks
+      ])
+    }
+    
+  }
+
+  const DeleteClickHandler = (index) =>{
+    console.log("element "+index+" was deleted seccussfully");
+    const NewTasks = Tasks.filter((element,ind) =>{
+      return ind !== index-1;
+    })
+    setTasks([...NewTasks])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={"App-container " + TaskExist}>
+      <TaskInPut onInputChange={InputChangeHandler}/>
+      <TaskOutPut FData = {Tasks} onDeleteClickHandler={DeleteClickHandler}/>
     </div>
   );
 }

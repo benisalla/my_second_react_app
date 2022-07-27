@@ -1,0 +1,16 @@
+.Task-container{
+    background-color: rgb(186, 197, 203);
+    margin: 1rem 0.3rem;
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: black 2px 2px 3px;
+}
+
+.Task-title{
+  color: rgb(8, 0, 154);
+}
+
+.Task-Name{
+    margin-right: 40%;
+}
